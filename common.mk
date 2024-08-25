@@ -56,26 +56,6 @@ TARGET_BOARD_PLATFORM := kalama
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# QTI components
-TARGET_COMMON_QTI_COMPONENTS := \
-    adreno \
-    alarm \
-    audio \
-    av \
-    bt \
-    display \
-    gps \
-    init \
-    overlay \
-    perf \
-    telephony \
-    usb \
-    wfd \
-    wlan
-
-TARGET_USE_AIDL_QTI_BT_AUDIO := true
-TARGET_USE_AIDL_QTI_HEALTH := true
-
 # Shipping API level
 BOARD_API_LEVEL := 33
 BOARD_SHIPPING_API_LEVEL := 33

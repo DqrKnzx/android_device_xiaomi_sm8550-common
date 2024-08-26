@@ -156,10 +156,6 @@ PRODUCT_COPY_FILES += \
 TARGET_PANEL_DIMENSION_HAS_EXTRA_PRECISION := true
 TARGET_USE_YCRCB_CAMERA_ENCODE := true
 
-# Dolby
-PRODUCT_PACKAGES += \
-    XiaomiDolby
-
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.3.vendor \
@@ -305,10 +301,6 @@ PRODUCT_PACKAGES += \
     Xiaomi8550SystemUIAOSPA \
     Xiaomi8550WifiRes \
     Xiaomi8550WifiResMainline \
-
-# Parts
-PRODUCT_PACKAGES += \
-    XiaomiParts
 
 # RenderScript
 PRODUCT_PACKAGES += \

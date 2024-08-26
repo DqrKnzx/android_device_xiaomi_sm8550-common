@@ -67,11 +67,10 @@ external_firmware_handler /devices/platform/soc/soc:gh-secure-vm-loader@1/firmwa
 # Lineage Charger
 /sys/class/qcom-battery   input_suspend  0660  system  system
 
-# Xiaomi Display Feature
+# xiaomi display feature
 subsystem mi_display
     devname uevent_devpath
     dirname /dev/mi_display
-/dev/mi_display/*         0666   root       graphics
 
-# Xiaomi NTAG
-/dev/ntag5-nci            0660   nfc        nfc
+# xiaomi display feature
+/dev/mi_display/*         0666   root       graphics

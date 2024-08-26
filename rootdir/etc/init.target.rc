@@ -61,13 +61,8 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import /vendor/etc/init/hw/init.qti.kernel.rc
-import /vendor/etc/init/hw/init.mi_perf.rc
 import /vendor/etc/init/hw/init.mi_thermald.rc
-import /vendor/etc/init/hw/init.mi_service.rc
-import /vendor/etc/init/hw/init.mi_udfps.rc
 import /vendor/etc/init/hw/init.batterysecret.rc
-
-import /odm/etc/init/hw/init.mi_device.rc
 
 on early-init
     write /proc/sys/kernel/printk_devkmsg ratelimited
@@ -237,6 +232,8 @@ on post-fs-data
     chown system system /sys/module/perf_helper/mimd/mimdtrigger
 
     mkdir /vendor/data/tombstones 0771 system system
+    setprop persist.sys.offlinelog.logcat false
+    setprop persist.sys.offlinelog.logcatkernel false
     mkdir /data/vendor/thermal 0771 root system
     mkdir /data/vendor/thermal/config 0771 root system
     mkdir /data/vendor/mac_addr 0770 system wifi
@@ -315,7 +312,6 @@ on boot
     chmod 0660 /sys/devices/platform/soc/990000.spi/spi_master/spi0/spi0.0/trusted_touch_enable
     chown system /sys/devices/system/cpu/hyp_core_ctl/enable
     chown system /sys/devices/system/cpu/hyp_core_ctl/hcc_min_freq
-    write /dev/memcg/camera/provider/memory.soft_limit_in_bytes 36818038505472
 
     # Control small-window through joyose
     mkdir /dev/cpuset/small-window
@@ -383,7 +379,7 @@ on charger
     write /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable 1
     write /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8 5000
     write /sys/bus/platform/devices/1d84000.ufshc/clkgate_enable 1
-    setprop persist.sys.offlinelog.poweroff_charger_log true
+    setprop persist.sys.offlinelog.poweroff_charger_log false
 
 #service vendor.lowi /vendor/bin/sscrpcd
 #   class core
@@ -425,6 +421,26 @@ on property:init.svc.vendor.per_mgr=running
 on property:sys.shutdown.requested=*
     write /sys/kernel/qcom_rproc/shutdown_in_progress 1
     stop vendor.per_proxy
+
+#on property:vold.decrypt=trigger_restart_framework
+#   start vendor.cnss_diag
+
+on property:ro.debuggable=1
+    start vendor.cnss_diag
+    start vendor.tcpdump
+
+on property:persist.vendor.cnss_diag.enable=true
+    start vendor.cnss_diag
+
+on property:persist.vendor.cnss_diag.enable=false
+    stop vendor.cnss_diag
+
+service vendor.cnss_diag /system/vendor/bin/cnss_diag -q -f -t HELIUM
+   class main
+   user system
+   group system wifi inet sdcard_rw media_rw diag
+   disabled
+   oneshot
 
 service vendor.nv_mac /vendor/bin/nv_mac
     class late_start

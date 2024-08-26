@@ -57,7 +57,6 @@ TARGET_BOARD_PLATFORM := kalama
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Shipping API level
-BOARD_API_LEVEL := 33
 BOARD_SHIPPING_API_LEVEL := 33
 PRODUCT_SHIPPING_API_LEVEL := 33
 
@@ -288,8 +287,9 @@ PRODUCT_PACKAGES += \
     android.hardware.neuralnetworks-V1-ndk.vendor
 
 # NFC
-$(call inherit-product, vendor/nxp/opensource/commonsys/packages/apps/Nfc/nfc_system_product.mk)
-$(call inherit-product, vendor/st/opensource/commonsys/packages/apps/Nfc/nfc_system_product.mk)
+PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.2.vendor \
+    libchrome.vendor
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.ese.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.ese.xml \
@@ -343,7 +343,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/bin/init.qcom.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.sh \
     $(LOCAL_PATH)/rootdir/etc/init.qcom.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.rc \
     $(LOCAL_PATH)/rootdir/etc/init.recovery.qcom.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.qcom.rc \
-    $(LOCAL_PATH)/rootdir/etc/init.sm8550.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.sm8475.rc \       
+    $(LOCAL_PATH)/rootdir/etc/init.sm8550.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.sm8475.rc \
     $(LOCAL_PATH)/rootdir/etc/init.target.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.rc \
     $(LOCAL_PATH)/rootdir/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
     $(LOCAL_PATH)/rootdir/etc/ueventd-odm.rc:$(TARGET_COPY_OUT_ODM)/etc/ueventd.rc

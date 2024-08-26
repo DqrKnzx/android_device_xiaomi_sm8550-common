@@ -59,7 +59,8 @@ BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(COMMON_PATH)/configs/vintf/framework_matrix_xiaomi.xml
+    $(COMMON_PATH)/configs/vintf/framework_matrix_xiaomi.xml \
+    vendor/derp/config/device_framework_matrix.xml
 
 DEVICE_MANIFEST_FILE += \
     $(COMMON_PATH)/configs/vintf/manifest_kalama.xml \
@@ -80,7 +81,7 @@ BOARD_KERNEL_CMDLINE := \
     disable_dma32=on \
     rcu_nocbs=all \
     rcutree.enable_rcu_lazy=1 \
-    mtdoops.fingerprint=$(AOSPA_VERSION)
+    mtdoops.fingerprint=$(DERP_VERSION)
 
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_USES_GENERIC_KERNEL_IMAGE := true

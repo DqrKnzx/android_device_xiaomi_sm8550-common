@@ -31,6 +31,9 @@ TARGET_ARCH_VARIANT := armv9-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_VARIANT := cortex-a510
 
+# Audio
+$(call soong_config_set, android_hardware_audio, run_64bit, true)
+
 # Boot
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)

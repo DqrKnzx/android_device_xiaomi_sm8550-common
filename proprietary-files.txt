@@ -64,7 +64,6 @@ vendor/lib64/vendor.qti.hardware.AGMIPC@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.AGMIPC@1.0.so
 
 # Audio
-odm/etc/audio/silent-3sec.wav
 odm/lib64/libaudioroute_ext.so
 odm/lib64/libcrussp.so
 vendor/etc/models/acd/event.eai
@@ -1164,8 +1163,6 @@ vendor/etc/qcril_database/upgrade/config/10.0_config.sql
 vendor/etc/qcril_database/upgrade/config/11.0_config.sql
 vendor/etc/qcril_database/upgrade/config/12.0_config.sql
 vendor/etc/qcril_database/upgrade/config/13.0_config.sql
-vendor/etc/qcril_database/upgrade/config/14.0_config.sql
-vendor/etc/qcril_database/upgrade/config/15.0_config.sql
 vendor/etc/qcril_database/upgrade/config/6.0_config.sql
 vendor/etc/qcril_database/upgrade/config/7.0_config.sql
 vendor/etc/qcril_database/upgrade/config/8.0_config.sql
